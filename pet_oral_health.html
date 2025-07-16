@@ -1,0 +1,143 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毛孩口腔健康指南</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        h2 {
+            color: #2e7d32;
+        }
+        p, li {
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+        .tip {
+            background-color: #fff3e0;
+            padding: 10px;
+            border-left: 4px solid #ff9800;
+            margin-bottom: 20px;
+        }
+        .call-to-action {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d81b60;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐾🦷 毛孩口臭？小心是牙齦囊袋在發炎！</h1>
+        <p>不論是貓還是狗，一旦嘴巴出現異味、進食變得敏感，除了牙結石，還要警惕牙齦囊袋的問題！</p>
+        <p>牙齦囊袋是由牙結石堆積所引發的牙齦空隙，不但容易堆積細菌與食物殘渣，還會導致牙齦紅腫、牙根鬆動，更可能進一步影響到心臟與腎臟功能。這不只是口腔問題，而是整體健康的警訊！</p>
+
+        <div class="highlight">
+            <h2>🌿 順勢療法推薦：Arnica montana 30C</h2>
+            <p>這是一種溫和而強效的天然處方，適用於犬貓，專門用來處理牙齦發炎、軟組織損傷與口腔不適。</p>
+            <h3>🔸 劑量建議：</h3>
+            <ul>
+                <li>🐱 貓咪：每日 1～2 次</li>
+                <li>🐶 狗狗：中小型犬每日 1～2 次；大型犬視體型可適度調整頻率</li>
+            </ul>
+            <h3>🔸 給藥方式：</h3>
+            <p>將糖球壓碎後加入食物中，或直接置於牙齦口腔內吸收</p>
+        </div>
+
+        <div class="highlight">
+            <h2>✨ 為什麼選擇 Arnica 30C？</h2>
+            <ul>
+                <li>✔ 緩解牙齦紅腫與微出血</li>
+                <li>✔ 幫助組織修復、促進癒合</li>
+                <li>✔ 改善局部循環、帶走堆積毒素</li>
+                <li>✔ 減少細菌擴散至全身風險（如菌血症）</li>
+                <li>✔ 緩解進食疼痛與敏感反應</li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <h2>📌 溫馨提醒：</h2>
+            <ul>
+                <li>✔ 若囊袋已有化膿現象，可搭配 Hepar sulph 或 Silicea 使用</li>
+                <li>✔ 若牙齒鬆動但尚無疼痛，可加入 Symphytum 3C/6X 輔助牙根整合</li>
+                <li>✔ 順勢療法屬於輔助療法，定期清除牙結石仍是根本解方！</li>
+            </ul>
+        </div>
+
+        <div class="call-to-action">
+            <p>💬 想讓毛孩遠離口臭、牙周病威脅嗎？<br>
+            歡迎留言詢問更多自然療法搭配建議，讓我們一起用溫柔的方式守護毛孩口腔與整體健康 💛🐾</p>
+        </div>
+
+        <p style="text-align: center; color: #888;">#順勢療法 #犬貓口腔保健 #牙齦囊袋 #Arnica30C #自然療癒 #寵物口臭 #毛孩牙齒保健 #HolisticVet #木曜共振 #寵物自然醫學</p>
+    </div>
+</body>
+</html>
