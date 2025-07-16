@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毛孩口腔健康指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #4fc3f7 0%, #0288d1 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .date {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .pet-icon {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            color: #0288d1;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0f7fa;
+        }
+        
+        h3 {
+            color: #0288d1;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #039be5;
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background-color: #e1f5fe;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #0288d1;
+            margin: 20px 0;
+        }
+        
+        .highlight p {
+            margin: 0;
+        }
+        
+        ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .checklist li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .tag {
+            background-color: #e3f2fd;
+            color: #0288d1;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .therapy-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0f7fa;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .herb-icon {
+            width: 60px;
+            height: 60px;
+            background: #e1f5fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            color: #0288d1;
+        }
+        
+        .reminder-box {
+            background: #fff8e1;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ffca28;
+            margin: 30px 0;
+        }
+        
+        .call-to-action {
+            background: linear-gradient(120deg, #81d4fa 0%, #4fc3f7 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .cta-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .btn {
+            background: white;
+            color: #0288d1;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .pet-icon {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 15px;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .herb-icon {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="pet-icon">🐶🐱</div>
+                <h1>毛孩口腔健康指南</h1>
+            </div>
+        </header>
+        
+        <div class="content">
+            <section>
+                <h2>毛孩口臭？小心是牙齦囊袋在發炎！</h2>
+                <p>不論是貓還是狗，一旦嘴巴出現異味、進食變得敏感，除了牙結石，還要警惕牙齦囊袋的問題！</p>
+                
+                <div class="highlight">
+                    <p>牙齦囊袋是由牙結石堆積所引發的牙齦空隙，不但容易堆積細菌與食物殘渣，還會導致牙齦紅腫、牙根鬆動，更可能進一步影響到心臟與腎臟功能。這不只是口腔問題，而是整體健康的警訊！</p>
+                </div>
+                
+                <div class="therapy-card">
+                    <div class="card-header">
+                        <div class="herb-icon">🌿</div>
+                        <h3>順勢療法推薦：Arnica montana 30C</h3>
+                    </div>
+                    <p>這是一種溫和而強效的天然處方，適用於犬貓，專門用來處理牙齦發炎、軟組織損傷與口腔不適。</p>
+                    
+                    <h4>劑量建議：</h4>
+                    <ul>
+                        <li>貓咪：每日1~2次</li>
+                        <li>狗狗：中小型犬每日1~2次；大型犬視體型可適度調整頻率</li>
+                    </ul>
+                    
+                    <h4>給藥方式：</h4>
+                    <p>將糖球壓碎後加入食物中，或直接置於牙齦口腔內吸收</p>
+                    
+                    <h4>為什麼選擇 Arnica 30C？</h4>
+                    <ul class="checklist">
+                        <li>緩解牙齦紅腫與微出血</li>
+                        <li>幫助組織修復、促進癒合</li>
+                        <li>改善局部循環、帶走堆積毒素</li>
+                        <li>減少細菌擴散至全身風險（如菌血症）</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>溫馨提醒</h2>
+                
+                <div class="reminder-box">
+                    <ul class="checklist">
+                        <li>若囊袋已有化膿現象，可搭配 Hepar sulph 或 Silicea 使用</li>
+                        <li>若牙齒鬆動但尚無疼痛，可加入 Symphytum 3C/6X 輔助牙根整合</li>
+                        <li>順勢療法屬於輔助療法，定期清除牙結石仍是根本解方！</li>
+                    </ul>
+                </div>
+                
+                <div class="call-to-action">
+                    <p class="cta-text">想讓毛孩遠離口臭、牙周病威脅嗎？</p>
+                    <p>歡迎留言詢問更多自然療法搭配建議，讓我們一起用溫柔的方式守護毛孩口腔與整體健康</p>
+                    <button class="btn">立即諮詢</button>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">#順勢療法</span>
+                    <span class="tag">#犬貓口腔保健</span>
+                    <span class="tag">#牙齦囊袋</span>
+                    <span class="tag">#Arnica30C</span>
+                    <span class="tag">#自然療癒</span>
+                    <span class="tag">#寵物口臭</span>
+                    <span class="tag">#毛孩牙齒保健</span>
+                    <span class="tag">#HolisticVet</span>
+                    <span class="tag">#木曜共振</span>
+                    <span class="tag">#寵物自然醫學</span>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>毛孩口腔健康指南 &copy; 2025 | 本內容僅供參考，實際治療請諮詢專業獸醫師</p>
+        </footer>
+    </div>
+</body>
+</html>
